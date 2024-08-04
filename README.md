@@ -1,10 +1,18 @@
-## APPLET_VEGA 
+## Applet_Vega
 
-- #####  *What* : Buidling a collection of tools,libraries,utilities and mircro applications in public using Go and Node JS programming. 
-- ##### *Why* : Learn Programming tools and various methodologies. Build outside Work. Work with concepts which is not been used a work at all. 
-- ##### *What Not* - No large app to maintain routine updates , familiarization with multiple technology and freedom to pivot. 
+
+#### **What** - Collection of simple micro apps , scripts , cli tools etc. 
+
+#### **Why** - Goal of the repo is to built smaller program to learn and impliment very specific logic, tech and protocols for front end backend and data layers. 
+
+#### **How** - Using different languages and tools to build the microapp to broaden the horizon 
+
+#### **Endgoal** -  Learning and Fun!
 
 ---
 
-#### **List of codebases/micro-applications**
-1. ##### Audio Vega (aud_vega)
+ Table of Content 
+ - audio-client-server
+ - [node-program-profiler](https://printf-scanf.pages.dev/posts/nodejsprofiling/)
+
+ *Note - Few scripts are part of my [blog site](https://printf-scanf.pages.dev/) which are linked in table above*
