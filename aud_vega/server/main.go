@@ -5,11 +5,14 @@ import (
 	"io/fs"
 	"log"
 	"net/http"
+	"os"
 	"path/filepath"
 )
 
+const storePath = "../store/"
+
 func listFiles() ([]string, error) {
-	const storePath = "../store/"
+
 	var storeArray []string
 	err := filepath.Walk(storePath, func(storePath string, info fs.FileInfo, err error) error {
 		if err != nil {
@@ -49,10 +52,36 @@ func listFileHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 }
+func playFileHandler(w http.ResponseWriter, r *http.Request) {
+	item := r.URL.Query().Get("item")
+
+	filePath := filepath.Join(storePath, item)
+
+	file, err := os.Open(filePath)
+
+	if err != nil {
+		http.Error(w, "Error Occured While Playing the audio file", http.StatusInternalServerError)
+		log.Println("Error Playing File:", err)
+		return
+	}
+
+	defer file.Close()
+
+	fileInfo, err := file.Stat()
+	if err != nil {
+		http.Error(w, "File stat error.", 500)
+		return
+	}
+
+	w.Header().Set("Content-Type", "audio/mpeg")
+	w.Header().Set("Content-Disposition", "inline")
+	http.ServeContent(w, r, item, fileInfo.ModTime(), file)
+}
 
 func main() {
 	const PORT = ":8080"
 	http.HandleFunc("/", listFileHandler)
+	http.HandleFunc("/play", playFileHandler)
 
 	log.Printf("Server is running at %v ", PORT)
 	err := http.ListenAndServe(PORT, nil)
