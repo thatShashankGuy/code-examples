@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/htmx.org@2.0.2"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>StoreFM - Audio Player</title>
+</head>
+<body class="bg-gray-100 text-gray-900 font-sans">
+    <div class="container mx-auto p-6">
+        <h1 class="text-2xl font-bold text-center text-pink-600 mb-4">Now Playing</h1>
+        <div class="p-4 bg-white rounded-lg shadow flex items-center justify-center">
+            <div class="flex flex-col items-center bg-white p-6 rounded-lg shadow-md">
+                <audio controls class="w-full max-w-lg rounded-lg overflow-hidden shadow-lg">
+                    <source src="{{.File}}" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <div class="mt-4 text-center">
+                    <p class="text-gray-700 text-sm">Now playing: {{.File}}</p>
+                </div>
+            </div>
+            
+        </div>
+        <div class="mt-4 text-center">
+            <a href="/" class="text-pink-500 hover:text-pink-700">Back to list</a>
+        </div>
+    </div>
+</body>
+</html>

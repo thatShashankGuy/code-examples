@@ -12,7 +12,7 @@
         <h1 class="text-4xl font-extrabold text-center text-pink-600 mb-8">StoreFM</h1>
         <ul class="space-y-4">
             {{range .}}
-            <li class="p-4 bg-white rounded-lg shadow hover:bg-pink-100 cursor-pointer flex items-center space-x-4" hx-post="/play?item={{.}}" hx-target="#audio-player" hx-swap="innerHTML">
+            <li class="p-4 bg-white rounded-lg shadow hover:bg-pink-100 cursor-pointer flex items-center space-x-4" hx-get="/play?item={{.}}" hx-target="#audio-player" hx-swap="innerHTML">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-pink-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-4.586-2.768A1 1 0 009 9.234v5.532a1 1 0 001.166.98l4.586-2.768a1 1 0 000-1.732z" />
                 </svg>
@@ -20,6 +20,7 @@
             </li>
             {{end}}
         </ul>
+        <!-- This is the target where the audio player will be injected -->
         <div id="audio-player" class="mt-8"></div>
     </div>
 </body>

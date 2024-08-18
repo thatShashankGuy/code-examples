@@ -79,8 +79,12 @@ func playFileHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	fmt.Printf("Playing file: %s, Size: %d bytes\n", fileInfo.Name(), fileInfo.Size())
-
-	http.ServeFile(w, r, filePath)
+	tmpl := template.Must(template.ParseFiles("templates/audio-player.html"))
+	tmpl.Execute(w, struct {
+		File string
+	}{
+		File: "/store/" + item,
+	})
 
 }
 
@@ -88,7 +92,7 @@ func main() {
 	const PORT = ":8080"
 	http.HandleFunc("/", listFileHandler)
 	http.HandleFunc("/play", playFileHandler)
-	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
+	http.Handle("/store/", http.StripPrefix("/store/", http.FileServer(http.Dir("../store"))))
 	fmt.Printf("Server is running at %v ", PORT)
 	err := http.ListenAndServe(PORT, nil)
 
