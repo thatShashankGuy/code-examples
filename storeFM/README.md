@@ -1,4 +1,4 @@
-#### Audio Vega
+#### StoreFM
 
 Purpose : Simple Http Server , serves list the audio files from store and play each audio 
 

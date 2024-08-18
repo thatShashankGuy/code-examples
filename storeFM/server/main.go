@@ -1,15 +1,15 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"io/fs"
-	"log"
 	"net/http"
 	"os"
 	"path/filepath"
 )
 
-const storePath = "../store/"
+const storePath = "../store"
 
 func listFiles() ([]string, error) {
 
@@ -32,7 +32,7 @@ func listFileHandler(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		http.Error(w, "Error Occured While Parsing the list", http.StatusInternalServerError)
-		log.Println("Error listing files:", err)
+		fmt.Printf("Error listing files:%v", err)
 		return
 	}
 
@@ -40,28 +40,35 @@ func listFileHandler(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		http.Error(w, "Error Occured While Parsing the html template with list", http.StatusInternalServerError)
-		log.Println("Error Parsing files:", err)
+		fmt.Printf("Error Parsing files: %v", err)
 		return
 	}
 
 	err = tmpl.Execute(w, list)
 	if err != nil {
 		http.Error(w, "Error Occured While Embedding the list in template", http.StatusInternalServerError)
-		log.Println("Error Executing template:", err)
+		fmt.Printf("Error Executing template: %v", err)
 		return
 	}
 
 }
 func playFileHandler(w http.ResponseWriter, r *http.Request) {
 	item := r.URL.Query().Get("item")
+	cwd, err := os.Getwd()
 
-	filePath := filepath.Join(storePath, item)
+	if err != nil {
+		http.Error(w, "Error Occured While Playing the audio file", http.StatusInternalServerError)
+		fmt.Printf("Error Playing File: %v", err)
+		return
+	}
+	filePath := filepath.Join(cwd, storePath, item)
+	fmt.Println(filePath)
 
 	file, err := os.Open(filePath)
 
 	if err != nil {
 		http.Error(w, "Error Occured While Playing the audio file", http.StatusInternalServerError)
-		log.Println("Error Playing File:", err)
+		fmt.Printf("Error Playing File: %v", err)
 		return
 	}
 
@@ -83,10 +90,10 @@ func main() {
 	http.HandleFunc("/", listFileHandler)
 	http.HandleFunc("/play", playFileHandler)
 
-	log.Printf("Server is running at %v ", PORT)
+	fmt.Printf("Server is running at %v ", PORT)
 	err := http.ListenAndServe(PORT, nil)
 
 	if err != nil {
-		log.Printf("Cannot Start server %v", err)
+		fmt.Printf("Cannot Start server %v", err)
 	}
 }
