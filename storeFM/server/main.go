@@ -62,7 +62,6 @@ func playFileHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	filePath := filepath.Join(cwd, storePath, item)
-	fmt.Println(filePath)
 
 	file, err := os.Open(filePath)
 
@@ -79,17 +78,17 @@ func playFileHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "File stat error.", 500)
 		return
 	}
+	fmt.Printf("Playing file: %s, Size: %d bytes\n", fileInfo.Name(), fileInfo.Size())
 
-	w.Header().Set("Content-Type", "audio/mpeg")
-	w.Header().Set("Content-Disposition", "inline")
-	http.ServeContent(w, r, item, fileInfo.ModTime(), file)
+	http.ServeFile(w, r, filePath)
+
 }
 
 func main() {
 	const PORT = ":8080"
 	http.HandleFunc("/", listFileHandler)
 	http.HandleFunc("/play", playFileHandler)
-
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 	fmt.Printf("Server is running at %v ", PORT)
 	err := http.ListenAndServe(PORT, nil)
 
