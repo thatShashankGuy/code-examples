@@ -7,9 +7,12 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"strconv"
 )
 
 const storePath = "../store"
+
+var likeCounter int32 = 0
 
 func listFiles() ([]string, error) {
 
@@ -88,15 +91,44 @@ func playFileHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
+func trackLikesHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method == http.MethodPost {
+		err := r.ParseForm()
+		if err != nil {
+			http.Error(w, "Invalid form data", http.StatusBadRequest)
+			return
+		}
+
+		likeCount, _ := strconv.Atoi(r.FormValue("likeCount"))
+		dislikeCount, _ := strconv.Atoi(r.FormValue("dislikeCount"))
+		fileName := r.FormValue("fileName")
+
+		if likeCount > 0 {
+			likeCounter += 1
+		}
+		if dislikeCount > 0 && likeCounter > 0 {
+			likeCounter -= 1
+		}
+
+		fmt.Printf("Total likes for %s : %d \n", fileName, likeCounter)
+		fmt.Fprintf(w, "Updated like counter: %d", likeCounter)
+	} else {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+	}
+}
+
 func main() {
 	const PORT = ":8080"
 	http.HandleFunc("/", listFileHandler)
 	http.HandleFunc("/play", playFileHandler)
 	http.Handle("/store/", http.StripPrefix("/store/", http.FileServer(http.Dir("../store"))))
-	fmt.Printf("Server is running at %v ", PORT)
+	http.HandleFunc("/like", trackLikesHandler)
 	err := http.ListenAndServe(PORT, nil)
 
 	if err != nil {
-		fmt.Printf("Cannot Start server %v", err)
+		errorMessage := fmt.Errorf("error founds during server initialization: %v", err)
+		fmt.Println(errorMessage)
+	} else {
+		fmt.Printf("Server is running at %v\n", PORT)
 	}
 }
