@@ -1,0 +1,14 @@
+{
+    "manifest_version": 3,
+    "name": "YouTube Comments Hider",
+    "version": "1.0",
+    "description": "Hides comments section on YouTube.",
+    "content_scripts": [
+      {
+        "matches": ["*://www.youtube.com/*"],
+        "js": ["content.js"]
+      }
+    ],
+    "permissions": ["activeTab"]
+  }
+  
