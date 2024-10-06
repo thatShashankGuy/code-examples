@@ -13,3 +13,4 @@ Collection of scripts , modules and micro-apps usually accompanied by a blog pos
  - NodeJs Programs
      - [node-program-profiler](https://printf-scanf.pages.dev/posts/nodejsprofiling/)
      - [firefox-extension](https://printf-scanf.pages.dev/posts/buildbrowserextensions/)
+     - [firefox-extension](https://printf-scanf.pages.dev/posts//)
