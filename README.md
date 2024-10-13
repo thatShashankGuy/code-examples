@@ -12,4 +12,4 @@ Table of Content
 |2|node-program-profiler | [node-program-profiler](https://printf-scanf.pages.dev/posts/node-js-profiling/)| program using node profiler|![node](/assets/node.png) |
 |3|firefox-extension | [firefox-extension](https://printf-scanf.pages.dev/posts/browser-extension/)| web browser extension to hide youtube comments |![node](/assets/html.png) |
 |4|web-socket-chat-app| [web-server-chat-app](https://printf-scanf.pages.dev/posts/web-socket-chat-server/)| chat app backend using web sokets |![node](/assets/node.png) |
-|5|nginx-load-balancer| [nginx-load-balancing](https://printf-scanf.pages.dev/posts/nginx-load-balancing/)| NGINX Load Balancer and Static file dist |[node](/assets/node.png)|
+|5|nginx-load-balancer| [nginx-load-balancing](https://printf-scanf.pages.dev/posts/nginx-load-balancing/)| NGINX Load Balancer and Static file dist |![node](/assets/node.png)|
