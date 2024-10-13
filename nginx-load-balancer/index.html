@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joke Balancing with NGINX</title>
+</head>
+<body>
+    <h1>Here are Random Jokes</h1>
+   <p> With Each request server responds NGINX will serve a PORT specific JOKE</p>
+   <div>JOKE FROM PORT : <b><i id="server-port">waiting</i></b></div>
+    <div id="server-response">Fetching a Joke from server...</div>
+
+    <script>
+        fetch('/api/data')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('server-response').innerText = data.joke;
+                document.getElementById('server-port').innerText = data.port
+            })
+            .catch(error => {
+                document.getElementById('server-response').innerText = 'Error fetching data';
+                console.error('Error:', error);
+            });
+    </script>
+</body>
+</html>
