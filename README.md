@@ -14,3 +14,4 @@ Collection of scripts , modules and micro-apps usually accompanied by a blog pos
      - [node-program-profiler](https://printf-scanf.pages.dev/posts/nodejsprofiling/)
      - [firefox-extension](https://printf-scanf.pages.dev/posts/buildbrowserextensions/)
      - [web-server-chat-app](https://printf-scanf.pages.dev/posts/web-socket-chat-server/)
+     - [nginx-load-balancer](https://printf-scanf.pages.dev/posts/nginx-load-balancing/)
