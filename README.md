@@ -4,8 +4,6 @@
 Collection of scripts , modules and micro-apps usually accompanied by a blog post @ *[Prinft/Scanf](https://printf-scanf.pages.dev/)*.
 
 ---
-
-
 Table of Content 
 
 |# | Program | Link to article |  Comments| Language/Tech 
