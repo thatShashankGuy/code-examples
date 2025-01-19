@@ -13,3 +13,4 @@ Table of Content
 |3|firefox-extension | [firefox-extension](https://printf-scanf.pages.dev/posts/browser-extension/)| web browser extension to hide youtube comments |![node](/assets/html.png) |
 |4|web-socket-chat-app| [web-server-chat-app](https://printf-scanf.pages.dev/posts/web-socket-chat-server/)| chat app backend using web sokets |![node](/assets/node.png) |
 |5|nginx-load-balancer| [nginx-load-balancing](https://printf-scanf.pages.dev/posts/nginx-load-balancing/)| NGINX Load Balancer and Static file dist |![node](/assets/node.png)|
+|6|node-typescript-native| [typescript-in-node](https://printf-scanf.pages.dev/posts/typescript-in-node/)| NGINX Load Balancer and Static file dist |![node](/assets/node.png)|
